@@ -1,0 +1,7 @@
+<tr>
+  <td>
+    <%= link_to "#{locals[:endpoint].capitalize} #{locals[:endpoint_path].capitalize}s", "https://stark-atoll-30610.herokuapp.com/api/v1/#{locals[:endpoint]}s/#{locals[:id]}/#{locals[:endpoint_path]}s", class: "btn btn-primary btn-xs" %>
+  </td>
+  <td>/api/v1/<%= locals[:endpoint]%>s/:id/<%= locals[:endpoint_path].downcase %>s</td>
+  <td>returns a collection of <%= locals[:endpoint_path].downcase %>s associated with that <%= locals[:endpoint].downcase %></td>
+</tr>

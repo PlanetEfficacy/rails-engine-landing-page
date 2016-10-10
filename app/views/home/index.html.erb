@@ -1,0 +1,67 @@
+<div class="container">
+  <h1>Welcome to Rails Engine</h1>
+  <h5><%= link_to "A Turing School of Software Design Project", "https://github.com/turingschool/lesson_plans/blob/master/ruby_03-professional_rails_applications/rails_engine.md" %></h5>
+  <p>This pair project was co-created by: <%= link_to "Nate Anderson", "https://www.linkedin.com/in/nate-anderson-b4bbb122?authType=NAME_SEARCH&authToken=Ogs_&locale=en_US&srchid=2254239121476069809718&srchindex=6&srchtotal=876&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A2254239121476069809718%2CVSRPtargetId%3A80604203%2CVSRPcmpt%3Aprimary%2CVSRPnm%3Atrue%2CauthType%3ANAME_SEARCH" %>
+  and <%= link_to "Jesse Spevack", "www.jessespevack.com" %></p>
+  <h3>About</h3>
+  <p>
+  Rails Engine is an Application Program Interface (API) that serves up mock sales data. Below you can click on any of the endpoints built into the Rails Engine API and see the JSON created by our API. For more information about the development of this project, please read the <%= link_to "Rails Engine blog post", "http://www.jessespevack.com/systems-leadership/2016/10/7/rails-engine" %> and visit our <%= link_to "Github Repository", "https://github.com/PlanetEfficacy/rails_engine." %>
+  </p>
+  <h3>Rails Engine API</h3>
+  <table class="table">
+    <tr>
+      <th>
+        API Endpoint
+      </th>
+      <th>
+        Path
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <th colspan="3">
+        Record Endpoints
+      </th>
+    </tr>
+    <%= render "/shared/record_endpoint", locals: {endpoint: "Merchant", attributes: ["id", "name", "created_at", "updated_at"], find: "find?/name=Schroeder-Jerde", find_all: "find_all?created_at=2012-03-27T14:54:02.000Z"}%>
+    <%= render "/shared/record_endpoint", locals: {endpoint: "Customer", attributes: ["id", "first_name", "last_name", "created_at", "updated_at"], find: "find?/first_name=Joey", find_all: "find_all?first_name=Anibal"}%>
+    <%= render "/shared/record_endpoint", locals: {endpoint: "Item", attributes: ["id", "name", "description", "unit_price", "merchant_id", "created_at", "updated_at"], find: "find?/unit_price=751.07", find_all: "find_all?unit_price=491.21"}%>
+    <%= render "/shared/record_endpoint", locals: {endpoint: "Invoice", attributes: ["id", "customer_id", "merchant_id", "status", "created_at", "updated_at"], find: "find?/status=shipped", find_all: "find_all?/status=shipped"}%>
+    <%= render "/shared/record_endpoint", locals: {endpoint: "Invoice_Item", attributes: ["id", "item_id", "invoice_id", "quantity", "unit_price", "created_at", "updated_at"], find: "find?/quantity=5", find_all: "find_all?/invoice_id=4477"}%>
+    <%= render "/shared/record_endpoint", locals: {endpoint: "Transaction", attributes: ["id", "invoice_id", "credit_card_number", "credit_card_expiration_date", "result", "created_at", "updated_at"], find: "find?/credit_card_number=4654405418249632", find_all: "find_all?/credit_card_number=4100951707607761"}%>
+    <tr>
+      <th colspan="3">
+        Relationship Endpoints
+      </th>
+    </tr>
+    <%= render "/shared/relationship_endpoint_collection", locals: {endpoint: "merchant", endpoint_path: "item", id: "2"} %>
+    <%= render "/shared/relationship_endpoint_collection", locals: {endpoint: "merchant", endpoint_path: "invoice", id: "2"} %>
+    <%= render "/shared/relationship_endpoint_collection", locals: {endpoint: "invoice", endpoint_path: "transaction", id: "2"} %>
+    <%= render "/shared/relationship_endpoint_collection", locals: {endpoint: "invoice", endpoint_path: "item", id: "2"} %>
+    <%= render "/shared/relationship_endpoint_single", locals: {endpoint: "invoice", endpoint_path: "customer", id: "2"} %>
+    <%= render "/shared/relationship_endpoint_single", locals: {endpoint: "invoice", endpoint_path: "merchant", id: "2"} %>
+    <%= render "/shared/relationship_endpoint_single", locals: {endpoint: "invoice_item", endpoint_path: "invoice", id: "2"} %>
+    <%= render "/shared/relationship_endpoint_single", locals: {endpoint: "invoice_item", endpoint_path: "item", id: "2"} %>
+    <%= render "/shared/relationship_endpoint_collection", locals: {endpoint: "item", endpoint_path: "invoice_item", id: "2"} %>
+    <%= render "/shared/relationship_endpoint_single", locals: {endpoint: "item", endpoint_path: "merchant", id: "2"} %>
+    <%= render "/shared/relationship_endpoint_single", locals: {endpoint: "transaction", endpoint_path: "invoice", id: "2"} %>
+    <tr>
+      <th colspan="3">
+        Business Intelligence Endpoints
+      </th>
+    </tr>
+    <%= render "/shared/business_logic", locals: {path_name: "Merchants Total Revenue", path: "merchants/most_revenue?quantity=7", path_display: "merchants/most_revenue?quantity=x", description: "returns the top x merchants ranked by total revenue"} %>
+    <%= render "/shared/business_logic", locals: {path_name: "Merchants Ranked by Items", path: "merchants/most_items?quantity=8", path_display: "merchants/most_items?quantity=x", description: "returns the top x merchants ranked by total number of items"} %>
+    <%= render "/shared/business_logic", locals: {path_name: "Merchants Revenue by Date", path: "merchants/revenue?date=2012-03-07 10:54:55", path_display: "merchants/revenue?date=x", description: "returns the total revenue for date x across all merchants"} %>
+    <%= render "/shared/business_logic", locals: {path_name: "Merchant Revenue", path: "merchants/72/revenue", path_display: "merchants/:id/revenue", description: "returns the total revenue for that merchant across all transactions"} %>
+    <%= render "/shared/business_logic", locals: {path_name: "Merchant Revenue by Date", path: "merchants/30/revenue?date=2012-03-16 11:55:05", path_display: "merchants/:id/revenue?date=x", description: "returns the total revenue for that merchant for a specific invoice date x"} %>
+    <%= render "/shared/business_logic", locals: {path_name: "Merchant Favorite Customer", path: "merchants/80/favorite_customer", path_display: "merchants/:id/favorite_customer", description: "returns the customer who has conducted the most total number of successful transactions"} %>
+    <%= render "/shared/business_logic", locals: {path_name: "Merchant's Customer with Pending Invoices", path: "merchants/17/customers_with_pending_invoices", path_display: "merchants/:id/customers_with_pending_invoices", description: "returns a collection of customers which have pending (unpaid) invoices"} %>
+    <%= render "/shared/business_logic", locals: {path_name: "Items by Revenue", path: "items/most_revenue?quantity=3", path_display: "items/most_revenue?quantity=x", description: "returns the top x items ranked by total revenue generated"} %>
+    <%= render "/shared/business_logic", locals: {path_name: "Items by Quantity", path: "items/most_items?quantity=5", path_display: "items/most_items?quantity=x", description: "returns the top x item instances ranked by total number solds"} %>
+    <%= render "/shared/business_logic", locals: {path_name: "Best Day", path: "items/1099/best_day", path_display: "items/:id/best_day", description: "returns the date with the most sales for the given item using the invoice date. If there are multiple days with equal number of sales, return the most recent day."} %>
+    <%= render "/shared/business_logic", locals: {path_name: "Favorite Merchant", path: "customers/66/favorite_merchant", path_display: "customers/:id/favorite_merchant", description: "eturns a merchant where the customer has conducted the most successful transactions"} %>
+  </table>
+</div>

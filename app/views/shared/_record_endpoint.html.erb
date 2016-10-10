@@ -1,0 +1,29 @@
+<tr>
+  <td> <%= link_to "#{locals[:endpoint]} All", "https://stark-atoll-30610.herokuapp.com/api/v1/#{locals[:endpoint].downcase}s", class: "btn btn-primary btn-xs" %> </td>
+  <td> /api/v1/<%= locals[:endpoint].downcase %></td>
+  <td> An index action which renders a JSON representation of all the appropriate <%= locals[:endpoint].downcase %> records. </td>
+</tr>
+<tr>
+  <td> <%= link_to "#{locals[:endpoint]} Single", "https://stark-atoll-30610.herokuapp.com/api/v1/#{locals[:endpoint].downcase}s/1", class: "btn btn-primary btn-xs" %> </td>
+  <td> /api/v1/<%= locals[:endpoint].downcase %>s/:id </td>
+  <td> A show action which renders a JSON representation of the appropriate <%= locals[:endpoint].downcase %> record. </td>
+</tr>
+<tr>
+  <td> <%= link_to "#{locals[:endpoint]} Find", "https://stark-atoll-30610.herokuapp.com/api/v1/#{locals[:endpoint].downcase}s/#{locals[:find]}", class: "btn btn-primary btn-xs" %> </td>
+  <td> /api/v1/<%= locals[:endpoint].downcase %>s/find?parameters </td>
+  <td>
+    A find action that will return a single <%= locals[:endpoint].downcase %> representation. The finder works with the following attributes:
+    <ul>
+      <% locals[:attributes].each do |attribute| %>
+        <li><%= attribute %></li>
+      <% end %>
+    </ul>
+  </td>
+</tr>
+<tr>
+  <td> <%= link_to "#{locals[:endpoint]} Find All", "https://stark-atoll-30610.herokuapp.com/api/v1/#{locals[:endpoint].downcase}s/#{locals[:find_all]}", class: "btn btn-primary btn-xs" %> </td>
+  <td> /api/v1/<%= locals[:endpoint].downcase %>s/find?parameters </td>
+  <td>
+    A find all action that will return an array of <%= locals[:endpoint].downcase %> matches for a given query. The finder works with any of the attributes defined on the <%= locals[:endpoint].downcase %> data type and always is case insensitive.
+  </td>
+</tr>
