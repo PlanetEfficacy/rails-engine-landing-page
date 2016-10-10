@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <%= link_to "#{locals[:endpoint].capitalize} #{locals[:endpoint_path].capitalize}", "https://stark-atoll-30610.herokuapp.com/api/v1/#{locals[:endpoint]}s/#{locals[:id]}/#{locals[:endpoint_path]}", class: "btn btn-primary btn-xs" %>
+    <%= link_to "#{locals[:endpoint].capitalize} #{locals[:endpoint_path].capitalize}", "https://rails-engine-100716.herokuapp.com/api/v1/#{locals[:endpoint]}s/#{locals[:id]}/#{locals[:endpoint_path]}", class: "btn btn-primary btn-xs" %>
   </td>
   <td>/api/v1/<%= locals[:endpoint]%>s/:id/<%= locals[:endpoint_path].downcase %></td>
   <td>returns the <%= locals[:endpoint_path].downcase %> associated with that <%= locals[:endpoint].downcase %></td>
